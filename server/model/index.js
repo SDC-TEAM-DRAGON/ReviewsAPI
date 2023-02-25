@@ -77,7 +77,7 @@ async function addReview ({ product_id, rating, summary, body, recommend, name, 
     body,
     recommend,
     reviewer_name: name,
-    reviewer_email: name,
+    reviewer_email: email,
     photos,
     chars: characteristics,
   });
@@ -86,7 +86,7 @@ async function addReview ({ product_id, rating, summary, body, recommend, name, 
 
   let charObj = {};
   for (let key in characteristics) {
-    charObj[key] = characteristics[key];
+    charObj[`charSums.${key}`] = characteristics[key];
   }
 
   const updateMeta = await ReviewMeta.findByIdAndUpdate(product_id,
@@ -101,13 +101,13 @@ async function addReview ({ product_id, rating, summary, body, recommend, name, 
 
 }
 
-async function helpful ({review_id}) {
+async function helpful (review_id) {
   // review_id is _id
   const helpful = await Review.findByIdAndUpdate(review_id, {$inc: { helpfulness: 1 }});
 
 }
 
-async function report ({review_id}) {
+async function report (review_id) {
   const helpful = await Review.findByIdAndUpdate(review_id, {reported: true});
 
 }

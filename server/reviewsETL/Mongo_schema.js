@@ -5,7 +5,10 @@ mongoose.set('strictQuery', false);
 // This Mongo schema has no authentication, and index
 // Because this allow for faster ETL, also we use express authentication
 const reviewSchema = new Schema({
-  product_id: Number,
+  product_id: {
+    type: Number,
+    index: true,
+  },
   rating: Number,
   date: Date,
   summary: String,

@@ -71,7 +71,6 @@ const reviewSchema = new Schema({
     type: Map,
     of: {
       type: Number,
-      required: true,
       min: 1,
       max: 5,
     }
