@@ -45,7 +45,7 @@ async function ETL(database = 'SDC', batchSize = 5000) {
 
   // Create four asyncReaders
   const [reviews, photos, chars, charReviews] = fileNames.map(fileName => {
-    return createReader('../../../data/' + fileName);
+    return createReader('../../data/' + fileName);
   });
 
   // Take reviews header and delete id, because we don't need auto_increment review id
@@ -165,7 +165,7 @@ async function ETL(database = 'SDC', batchSize = 5000) {
       else metaDocument.ratings.set(ratingKey, ratingVal + 1);
 
       // Updating review meta document recommend
-      if (document.recommend) metaDocument.recommend['true'] += 1;
+      if (document.recommend === 'true') metaDocument.recommend['true'] += 1;
       else metaDocument.recommend['false'] += 1;
 
       // Updating review meta document chars

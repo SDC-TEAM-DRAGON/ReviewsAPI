@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const Reviews = require('./model/index.js');
 const axios = require('axios');
-const cors = require('cors');
 
 
 const app = express();
